@@ -14,7 +14,7 @@ import boto3
 import boto3.exceptions
 from boto3.dynamodb.conditions import Key, Attr
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://dry-escarpment-18133.herokuapp.com/"
 
 #AWS Resources required by the API
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="", aws_secret_access_key="")
