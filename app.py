@@ -17,9 +17,9 @@ from boto3.dynamodb.conditions import Key, Attr
 BASE_URL = "https://dry-escarpment-18133.herokuapp.com/"
 
 #AWS Resources required by the API
-dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="", aws_secret_access_key="")
-lambdaresize = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="", aws_secret_access_key="")
-lambdasecurity = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="", aws_secret_access_key="")
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="SECRET_KEY_ID", aws_secret_access_key="SECRET_KEY")
+lambdaresize = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="SECRET_KEY_ID", aws_secret_access_key="SECRET_KEY")
+lambdasecurity = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="SECRET_KEY_ID", aws_secret_access_key="SECRET_KEY")
 s3 = boto3.client('s3')
 
 app = Flask(__name__) # creates a flask App and stores it as 'app'
