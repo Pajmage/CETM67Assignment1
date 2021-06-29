@@ -19,9 +19,9 @@ skeyid = os.environ.get("SECRET_KEY_ID")
 accesskey = os.environ.get("SECRET_KEY")
 
 #AWS Resources required by the API
-dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id=skeyid, aws_secret_access_key=accesskey)
-lambdaresize = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id=skeyid, aws_secret_access_key=accesskey)
-lambdasecurity = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id=skeyid, aws_secret_access_key=accesskey)
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="vJVVIe68QtZ2cFZ5sq6")
+lambdaresize = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="vJVVIe68QtZ2cFZ5sq6")
+lambdasecurity = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="vJVVIe68QtZ2cFZ5sq6")
 s3 = boto3.client('s3')
 
 app = Flask(__name__) # creates a flask App and stores it as 'app'
