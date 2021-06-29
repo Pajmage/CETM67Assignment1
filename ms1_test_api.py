@@ -18,7 +18,6 @@ response = requests.get(BASE_URL + '/users/all')
 print(response.status_code)
 print(response.text)
 
-
 # Issue a GET request to display specific user from the database, with a user that does not exist
 response = requests.get(BASE_URL + '/users/FakeUser')
 print(response.status_code)
@@ -34,6 +33,9 @@ response = requests.post(
     BASE_URL + '/users/Bob', {"Employee_ID":"0002", "Forename":"Bob","Surname":"Bloggs", "Email":"bbloggs@dxc.com"})
 print(response.status_code)
 print(response.text)
+
+print("Press any key to continue test and delete the added record")
+input()
 
 # Issue a DELETE request to the table to delete the supplied user, using a user that exists in the table
 response = requests.delete(BASE_URL + '/users/0002')
