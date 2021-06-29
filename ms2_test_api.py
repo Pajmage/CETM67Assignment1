@@ -6,7 +6,7 @@
 import requests
 import simplejson as json
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://dry-escarpment-18133.herokuapp.com:5000/"
 
 # Issue a POST request to the API to upload the provided file
 response = requests.post(BASE_URL + '/file/0001BPSS.docx', {"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com"})

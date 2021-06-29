@@ -14,7 +14,7 @@ import boto3
 import boto3.exceptions
 from boto3.dynamodb.conditions import Key, Attr
 
-BASE_URL = "https://dry-escarpment-18133.herokuapp.com/"
+BASE_URL = "https://limitless-beyond-11781.herokuapp.com/"
 skeyid = os.environ.get("SECRET_KEY_ID")
 accesskey = os.environ.get("SECRET_KEY")
 
