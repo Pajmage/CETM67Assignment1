@@ -59,7 +59,7 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
             return {
             'headers': { "Content-Type": "application/json" },
             'statusCode': 200,
-            'body': json.dumps(response),
+            'body': json.dumps(filereturn),
             'isBase64Encoded': True
             }
         except Exception as e:
