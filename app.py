@@ -84,8 +84,8 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
         try:
             s3.delete_object(Bucket='cetm67-sec-documents', Key=file)
             return {"Message":"File Deleted"}, 200
-        except:
-            return{"Message":"File not found"}, 404
+        except Exception as e:
+            return{"Message":"File not found", "file": str(file), "e":str(e)}, 404
 
 
 class UserProfile(Resource): # Class that deals with any requests around user data (CRUD operations)
