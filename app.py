@@ -52,16 +52,18 @@ class HomeRoute(Resource): # HomeRoute Class to ensure connectivity.  In a real 
 class FileOperation(Resource): # FileOperation class that handles uploading and downloading of the files associated with each employee in the system, i.e. Security Clearance Documentation.
     def get(self, file_name): # GET Function to download the requested file.
         file = file_name
-        response = s3.get_object(Bucket='cetm67-sec-documents', Key=file,)
-        download_file = response['Body'].read()
-        filereturn = base64.b64encode(download_file).decode('utf-8')
-        return {
+        try:
+            response = s3.get_object(Bucket='cetm67-sec-documents', Key=file,)
+            download_file = response['Body'].read()
+            filereturn = base64.b64encode(download_file).decode('utf-8')
+            return {
             'headers': { "Content-Type": "application/json" },
             'statusCode': 200,
-            'body': json.dumps(filereturn),
+            'body': json.dumps(response),
             'isBase64Encoded': True
-        } 
-
+            }
+        except Exception as e:
+            return str(e)
     
     def post(self, file_name):
         file = file_name
