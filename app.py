@@ -22,7 +22,7 @@ BASE_URL = "https://limitless-beyond-11781.herokuapp.com/"
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
 lambdaresize = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
 lambdasecurity = boto3.client('lambda', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
-s3 = boto3.client('s3')
+s3 = boto3.client('s3', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
 
 app = Flask(__name__) # creates a flask App and stores it as 'app'
 api = Api(app) # creates an API interface for the 'app'
