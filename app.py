@@ -61,7 +61,7 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
             'body': json.dumps(filereturn),
             'isBase64Encoded': True
         } 
-     
+
     
     def post(self, file_name):
         file = file_name
@@ -69,12 +69,11 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
             data = request.get_json()
             file_content = base64.b64decode(data['file']) # Get the file from the payload and decode it from binary back into its file type
             response = s3.put_object(Bucket='cetm67-sec-documents', Key=data['name'], Body=file_content) # Take the decoded file and put it in the bucket with the supplied name from the payload
-            return {"Message":"File uploaded, user details uploaded", "Response": response.text,}, 200
             fileurl = "https://cetm67-sec-documents.s3.eu-west-2.amazonaws.com/"+file
             payload = {"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com", "BPSSFile":fileurl}
             headers = {"content-type": "application/json"}
-            response2 = requests.put(BASE_URL+"/users/"+data["Employee_ID"], data=json.dumps(payload),headers=headers)
-            
+            requests.put(BASE_URL+"/users/"+data["Employee_ID"], data=json.dumps(payload),headers=headers)
+            return {"Message":"File uploaded, user details uploaded",}, 200
         except Exception as e:
             print(e)
 
