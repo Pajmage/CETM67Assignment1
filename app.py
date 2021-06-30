@@ -81,8 +81,9 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
 
     def delete(self, file_name):
         file = file_name
+        s3 = boto3.client('s3', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
         try:
-            s3.delete_object(Bucket='cetm67-sec-documents', Key="0001BPSS.docx")
+            s3.delete_object(Bucket='cetm67-sec-documents', Key=file)
             return {"Message":"File Deleted"}, 200
         except Exception as e:
             return{"Message":"File not found", "file": str(file), "e":str(e)}, 404
