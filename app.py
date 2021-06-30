@@ -7,6 +7,7 @@ from flask import Flask, request, current_app, Response, jsonify
 from flask_restful import Api, Resource, reqparse, abort
 from os import environ
 import simplejson as json
+import base64
 import requests
 
 #Boto3 Imports.  This is the AWS SDK for Python and must be imported to communicate with AWS services
@@ -16,8 +17,6 @@ from boto3.dynamodb.conditions import Key, Attr
 
 BASE_URL = "https://limitless-beyond-11781.herokuapp.com/"
 #BASE_URL = "http://127.0.0.1:5000"
-#skeyid = os.environ.get("SECRET_KEY_ID")
-#accesskey = os.environ.get("SECRET_KEY")
 
 #AWS Resources required by the API
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-2', aws_access_key_id="AKIA5T6FDNPSL77LDAEO", aws_secret_access_key="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")
@@ -53,22 +52,29 @@ class HomeRoute(Resource): # HomeRoute Class to ensure connectivity.  In a real 
 class FileOperation(Resource): # FileOperation class that handles uploading and downloading of the files associated with each employee in the system, i.e. Security Clearance Documentation.
     def get(self, file_name): # GET Function to download the requested file.
         file = file_name
-        downloadfilename = "DOWNLOAD_"+file
-        try:
-            s3.download_file('cetm67-sec-documents', file , downloadfilename)
-            return {"Message":"File downloaded"}, 200
-        except:
-            return {"Message":"File not downloaded"}, 404
-
+        response = s3.get_object(Bucket='cetm67-sec-documents', Key=file,)
+        download_file = response['Body'].read()
+        filereturn = base64.b64encode(download_file).decode('utf-8')
+        return {
+            'headers': { "Content-Type": "docx" },
+            'statusCode': 200,
+            'body': json.dumps(filereturn),
+            'isBase64Encoded': True
+        } 
+     
+    
     def post(self, file_name):
         file = file_name
         try:
-            args = parser.parse_args()
-            s3.upload_file(file, 'cetm67-sec-documents', file)
+            data = request.get_json()
+            print(data)
+            file_content = base64.b64decode(data['file']) # Get the file from the payload and decode it from binary back into its file type
+            response = s3.put_object(Bucket='cetm67-sec-documents', Key=data['name'], Body=file_content) # Take the decoded file and put it in the bucket with the supplied name from the payload
+            
             fileurl = "https://cetm67-sec-documents.s3.eu-west-2.amazonaws.com/"+file
             payload = {"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com", "BPSSFile":fileurl}
             headers = {"content-type": "application/json"}
-            requests.put(BASE_URL+"/users/"+args.get("Employee_ID"), data=json.dumps(payload),headers=headers)
+            requests.put(BASE_URL+"/users/"+data["Employee_ID"], data=json.dumps(payload),headers=headers)
             return {"Message":"File uploaded, user details uploaded"}, 200
         except Exception as e:
             print(e)
