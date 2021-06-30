@@ -82,7 +82,7 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
     def delete(self, file_name):
         file = file_name
         try:
-            s3.delete_object(Bucket='cetm67-sec-documents', Key=file)
+            s3.delete_object(Bucket='cetm67-sec-documents/', Key=file)
             return {"Message":"File Deleted"}, 200
         except Exception as e:
             return{"Message":"File not found", "file": str(file), "e":str(e)}, 404
