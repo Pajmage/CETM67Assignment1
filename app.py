@@ -54,6 +54,7 @@ class FileOperation(Resource): # FileOperation class that handles uploading and 
         file = file_name
         response = s3.get_object(Bucket='cetm67-sec-documents', Key=file,)
         download_file = response['Body'].read()
+        print(download_file)
         filereturn = base64.b64encode(download_file).decode('utf-8')
         return {
             'headers': { "Content-Type": "docx" },
