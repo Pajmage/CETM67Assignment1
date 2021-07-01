@@ -10,7 +10,7 @@
 
 4) app.py will need the AWS Access keys supplying for the BOTO3 access, these will be emailed seperately
 
-5) App.py should be run, enmsuring BASE_URL is set to localhost
+5) App.py should be run, ensuring BASE_URL is set to localhost
 
 6) ms*_test_api.py are the test files, one for each Microservice, ensure BASE_URL is set correctly in each one before running the file.
 
