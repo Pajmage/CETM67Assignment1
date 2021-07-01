@@ -14,7 +14,7 @@ BASE_URL = "https://limitless-beyond-11781.herokuapp.com/"
 with open("0001BPSS.docx", "rb") as f: # opens the file in the same directory as the ms2_test.py file
     file_bytes = base64.b64encode(f.read()) # encodes the file to a binary filetype
 payload = {"name": "0001BPSS.docx","bucket" : "cetm67-sec-documents", "file": file_bytes.decode("utf-8"),"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com"} # construct the payload to send to the API call, including the encoded file
-response = requests.post(BASE_URL + "/file/0001BPSS.docx", data = json.dumps(payload), headers = {'Content-type': 'application/json'})
+response = requests.post(BASE_URL + "/file/0001BPSS.docx", data = json.dumps(payload), headers = {"Content-type": "application/json"})
 print(response.status_code)
 print(response.text)
 
