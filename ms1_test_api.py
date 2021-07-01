@@ -1,6 +1,6 @@
 ''' PJones Test_API File
     BH83DQ
-    15/06/2021
+    30/06/2021
     Test API script for Microservice 1 - User Registration and Maintenance (CRUD to a DynamoDB)
 '''
 import requests
@@ -49,7 +49,7 @@ print(response.status_code)
 print(response.text)
 
 # Issue a PUT request to update the provided user details, in this case, changing BPSS clearance to True from False
-payload = {"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com", "BPSS": True}
+payload = {"Employee_ID":"0001", "Forename":"Paul","Surname":"Jones", "Email":"pjones98@dxc.com", "BPSS": True} # construct the payload to send to the API call, including the encoded file
 headers = {"content-type": "application/json"}
 response = requests.put(
     BASE_URL + '/users/0001', data=json.dumps(payload),headers=headers)

@@ -1,6 +1,6 @@
 ''' PJones Test_API File
     BH83DQ
-    15/06/2021
+    30/06/2021
     Test API script for Microservice 4 - User Clearance Level (Using a Lambda to query a DynamoDB to check Security Clearance level)
 '''
 import requests

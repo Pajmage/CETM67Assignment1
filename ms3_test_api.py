@@ -1,6 +1,6 @@
 ''' PJones Test_API File
     BH83DQ
-    15/06/2021
+    30/06/2021
     Test API script for Microservice 3 - Image resize service (Using a Lambda to resize an image in an S3 bucket)
 '''
 import requests
